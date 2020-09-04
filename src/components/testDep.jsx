@@ -24,6 +24,7 @@ export class TestDep extends Component {
   render() {
     return (
       <div>
+        <h1>Department list</h1>
         <ul>
           {this.state.details.map((detail, id) => (
             <li>
