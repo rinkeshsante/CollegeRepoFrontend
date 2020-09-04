@@ -5,7 +5,7 @@ import { TestDep } from "./components/testDep";
 
 function App() {
   return (
-    <div className="App">
+    <div className="Container">
       <TestDep></TestDep>
     </div>
   );

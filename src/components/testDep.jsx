@@ -17,14 +17,12 @@ export class TestDep extends Component {
         });
       })
       .catch((err) => {});
-
-    console.log(data);
   }
 
   render() {
     return (
       <div>
-        <h1>Department list</h1>
+        <h1 className="badge-primary">Department list</h1>
         <ul>
           {this.state.details.map((detail, id) => (
             <li>
