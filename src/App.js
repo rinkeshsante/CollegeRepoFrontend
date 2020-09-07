@@ -1,12 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { TestDep } from "./components/testDep";
+import { TestForm } from "./components/testForm";
 
 function App() {
   return (
     <div className="Container">
       <TestDep></TestDep>
+      <TestForm></TestForm>
     </div>
   );
 }

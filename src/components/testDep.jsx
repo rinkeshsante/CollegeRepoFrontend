@@ -9,7 +9,7 @@ export class TestDep extends Component {
     let data;
 
     axios
-      .get("http://127.0.0.1:8000/departemnts/")
+      .get("http://127.0.0.1:8000/api/departemnts/")
       .then((res) => {
         data = res.data;
         this.setState({
