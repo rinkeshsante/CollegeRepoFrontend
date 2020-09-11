@@ -1,13 +1,12 @@
 import React from "react";
 import "./App.css";
-import { TestDep } from "./components/testDep";
-import { TestForm } from "./components/testForm";
+import { TestTable } from "./components/testTable";
 
 function App() {
   return (
     <div className="Container">
-      <TestDep></TestDep>
-      <TestForm></TestForm>
+      {/* <TestDep></TestDep> */}
+      <TestTable></TestTable>
     </div>
   );
 }
