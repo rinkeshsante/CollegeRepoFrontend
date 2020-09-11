@@ -1,13 +1,17 @@
 import React from "react";
 import "./App.css";
-import { TestDep } from "./components/testDep";
-import { TestForm } from "./components/testForm";
+import Main from "./components/main";
+import Navbar from "./components/navbar";
+import Sidebar from "./components/sidebar";
 
 function App() {
   return (
-    <div className="Container">
-      <TestDep></TestDep>
-      <TestForm></TestForm>
+    <div className="container">
+      <Navbar></Navbar>
+      <div className="row">
+        <Sidebar></Sidebar>
+        <Main></Main>
+      </div>
     </div>
   );
 }
