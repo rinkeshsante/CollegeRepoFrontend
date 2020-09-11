@@ -33,7 +33,6 @@ export class TestDep extends Component {
 
     return (
       <div>
-        {/* <button onClick={this.getData}>refresh</button> */}
         <h1 className="badge-primary">Department list</h1>
         <ul>
           {this.state.items.map((detail) => (

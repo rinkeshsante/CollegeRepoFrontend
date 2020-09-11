@@ -1,12 +1,11 @@
 import React from "react";
 import "./App.css";
-import { TestTable } from "./components/testTable";
+import LabTable from "./components/labTable";
 
 function App() {
   return (
     <div className="Container">
-      {/* <TestDep></TestDep> */}
-      <TestTable></TestTable>
+      <LabTable></LabTable>
     </div>
   );
 }
