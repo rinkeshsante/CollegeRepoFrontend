@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-const BASE_URL = "http://127.0.0.1:8000/api/departemnts/";
+const BASE_URL = "http://127.0.0.1:8000/api/departments/";
 export class TestDep extends Component {
   state = {
     items: [],
