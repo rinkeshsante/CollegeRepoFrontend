@@ -4,6 +4,14 @@ export class TestTable extends Component {
   render() {
     return (
       <div>
+        <a
+          download="somedata.csv"
+          href="#"
+          onclick="return ExcellentExport.csv(this, 'dtBasicExample');"
+        >
+          Export to CSV
+        </a>
+        <br />
         <table
           id="dtBasicExample"
           class="table table-striped table-bordered table-sm"
@@ -39,6 +47,9 @@ export class TestTable extends Component {
             </tr>
           </tbody>
         </table>
+        <a href="#" onclick="download_table_as_csv('dtBasicExample');">
+          Download as CSV
+        </a>
       </div>
     );
   }
