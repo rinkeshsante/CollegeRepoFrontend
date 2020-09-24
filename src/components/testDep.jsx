@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { ApiEndpoint } from "../config.json";
 import axios from "axios";
 
-const BASE_URL = "http://127.0.0.1:8000/api/departments/";
+const BASE_URL = ApiEndpoint;
 export class TestDep extends Component {
   state = {
     items: [],
@@ -15,16 +16,18 @@ export class TestDep extends Component {
     // refresh every 5 sec
   }
 
-  getData = () => {
-    axios
-      .get(BASE_URL)
-      .then((response) =>
-        this.setState({
-          isLoaded: true,
-          items: response.data,
-        })
-      )
-      .catch((error) => console.log(error));
+  getData = async () => {
+    try {
+      const { data } = await axios.get(BASE_URL);
+      this.setState({
+        isLoaded: true,
+        items: data,
+      });
+    } catch (ex) {
+      if (ex.respose && ex.respose.status === 400) alert("data don't exist");
+      else alert("unexpected error");
+    }
+
     console.log("data refreshed");
   };
 
@@ -33,7 +36,7 @@ export class TestDep extends Component {
 
     return (
       <div>
-        <h1 className="badge-primary">Department list</h1>
+        <h1>Department list</h1>
         <ul>
           {this.state.items.map((detail) => (
             <li key={detail.id}>
@@ -59,30 +62,105 @@ export class TestForm extends Component {
   };
 
   handleSubmit = (event) => {
-    alert("A name was submitted: " + this.state.name);
     event.preventDefault();
 
     axios.post(BASE_URL, this.state).catch((err) => {
       console.log(err);
     });
+    this.setState({
+      name: "",
+    });
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </label>
-        <button type="submit">save</button>
-      </form>
+      <div>
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          New
+        </button>
+
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Delete Form
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  {/* for close button */}
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label class="col-form-label">Name:</label>
+                    <input
+                      type="text"
+                      name="name"
+                      className="form-control"
+                      value={this.state.name}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={this.handleSubmit}
+                  class="btn btn-primary"
+                  data-dismiss="modal"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
-  }
+
+  //   return (
+  //     <div>
+  //       <form onSubmit={this.handleSubmit}>
+  //         <label>
+  //           Name:
+  //           <input
+  //             type="text"
+  //             name="name"
+  //             value={this.state.name}
+  //             onChange={this.handleChange}
+  //           />
+  //         </label>
+  //         <button type="submit">save</button>
+  //       </form>
+  //     </div>
+  //   );
+  // }
 }
 
 export class DeleteForm extends Component {
