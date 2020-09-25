@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ApiEndpoint } from "../config.json";
 import axios from "axios";
 import Modal from "./common/modal";
+import CsvDownload from "react-json-to-csv";
 
 const BASE_URL = ApiEndpoint;
 export class TestDep extends Component {
@@ -35,6 +36,8 @@ export class TestDep extends Component {
   render() {
     if (!this.state.isLoaded) return <h2>loading....</h2>;
 
+    const filename = this.getFileName();
+
     return (
       <div>
         <h1>Department list</h1>
@@ -48,23 +51,52 @@ export class TestDep extends Component {
           ))}
         </ul>
         <div className="row">
-          <div className="col-4">
+          <div className="col-3">
             <Modal buttonName="New" header="Create Form" modalId="newModal">
               <TestForm></TestForm>
             </Modal>
           </div>
-          <div className="col-4">
+          <div className="col-3">
             <Modal buttonName="Delete" header="Delete Form" modalId="delModal">
               <DeleteForm></DeleteForm>
             </Modal>
           </div>
-          <div className="col-4">
+          <div className="col-3">
             <Modal buttonName="Update" header="Update Form" modalId="upModal">
               <UpdateForm></UpdateForm>
             </Modal>
           </div>
+          <div className="col-3">
+            <CsvDownload
+              data={[...this.state.items]}
+              filename={filename}
+              className="btn badge-info"
+            >
+              DownLoad csv
+            </CsvDownload>
+          </div>
         </div>
       </div>
+    );
+  }
+
+  getFileName() {
+    var today = new Date();
+    var date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+
+    return (
+      "dep " +
+      date +
+      " at " +
+      today.getHours() +
+      ":" +
+      today.getMinutes() +
+      ".csv"
     );
   }
 }
