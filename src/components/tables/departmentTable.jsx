@@ -40,7 +40,7 @@ export class DepartmentTable extends Component {
 
     return (
       <div>
-        <h1>
+        <h2>
           Department list
           <CsvDownload
             data={[...this.state.items]}
@@ -49,16 +49,23 @@ export class DepartmentTable extends Component {
           >
             DownLoad csv
           </CsvDownload>
-        </h1>
-        <ul>
-          {this.state.items.map((detail) => (
-            <li key={detail.id}>
-              <cite title="Source Title ">
-                {detail.id} ){detail.name}
-              </cite>
-            </li>
-          ))}
-        </ul>
+        </h2>
+        <table class="table  table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.items.map((detail) => (
+              <tr>
+                <th>{detail.id}</th>
+                <td>{detail.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }
