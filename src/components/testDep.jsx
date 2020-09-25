@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ApiEndpoint } from "../config.json";
 import axios from "axios";
+import Modal from "./common/modal";
 
 const BASE_URL = ApiEndpoint;
 export class TestDep extends Component {
@@ -47,7 +48,11 @@ export class TestDep extends Component {
           ))}
         </ul>
         <TestForm></TestForm>
-        <DeleteForm></DeleteForm>
+
+        <Modal buttonName="deleteform" modalId="delModal">
+          <DeleteForm></DeleteForm>
+        </Modal>
+
         <UpdateForm></UpdateForm>
       </div>
     );
@@ -75,91 +80,20 @@ export class TestForm extends Component {
   render() {
     return (
       <div>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          New
-        </button>
-
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
-                  Delete Form
-                </h5>
-                <button
-                  type="button"
-                  class="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  {/* for close button */}
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form>
-                  <div class="form-group">
-                    <label class="col-form-label">Name:</label>
-                    <input
-                      type="text"
-                      name="name"
-                      className="form-control"
-                      value={this.state.name}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button
-                  onClick={this.handleSubmit}
-                  class="btn btn-primary"
-                  data-dismiss="modal"
-                >
-                  Save
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name:
+            <input
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+          </label>
+          <button type="submit">save</button>
+        </form>
       </div>
     );
-
-    //   return (
-    //     <div>
-    //       <form onSubmit={this.handleSubmit}>
-    //         <label>
-    //           Name:
-    //           <input
-    //             type="text"
-    //             name="name"
-    //             value={this.state.name}
-    //             onChange={this.handleChange}
-    //           />
-    //         </label>
-    //         <button type="submit">save</button>
-    //       </form>
-    //     </div>
-    //   );
   }
 }
 
