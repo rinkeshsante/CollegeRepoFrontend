@@ -9,7 +9,7 @@ export class Main extends Component {
     return (
       <div className="col-md-8 order-md-2 ">
         <Switch>
-          <Route path="/dep" component={TestDep}></Route>
+          <Route path="/departments" component={TestDep}></Route>
           <Route path="/home" component={Home}></Route>
           <Route path="/not-found" component={NotFound}></Route>
 

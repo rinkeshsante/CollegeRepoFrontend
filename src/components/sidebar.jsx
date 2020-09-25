@@ -12,14 +12,41 @@ export class Sidebar extends Component {
           >
             Home
           </NavLink>
-          <NavLink className="list-group-item list-group-item-action" to="/dep">
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/reports"
+          >
+            Reports
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/departments"
+          >
             Departments
           </NavLink>
           <NavLink
             className="list-group-item list-group-item-action"
-            to="/not-found"
+            to="/labs"
           >
-            nf
+            Labs
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/computers"
+          >
+            Computers
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/equipments"
+          >
+            Equipments
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/software"
+          >
+            Software
           </NavLink>
         </div>
       </div>
