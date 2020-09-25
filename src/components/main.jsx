@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
+import ExportCSV from "./exportCsv";
 import Home from "./home";
 import NotFound from "./notFound";
 import TestDep from "./testDep";
@@ -11,6 +12,7 @@ export class Main extends Component {
         <Switch>
           <Route path="/departments" component={TestDep}></Route>
           <Route path="/home" component={Home}></Route>
+          <Route path="/reports" component={ExportCSV}></Route>
           <Route path="/not-found" component={NotFound}></Route>
 
           <Redirect path="/" exact to="/home"></Redirect>
