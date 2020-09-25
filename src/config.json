@@ -1,3 +1,3 @@
 {
-  "ApiEndpoint": "http://127.0.0.1:8000/api/departments/"
+  "ApiEndpoint": "http://127.0.0.1:8000/api/"
 }

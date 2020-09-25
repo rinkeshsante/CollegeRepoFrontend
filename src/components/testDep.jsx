@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { ApiEndpoint } from "../config.json";
 import axios from "axios";
 import Modal from "./common/modal";
 import CsvDownload from "react-json-to-csv";
 
-const BASE_URL = ApiEndpoint;
+import { ApiEndpoint } from "../config.json";
+const BASE_URL = ApiEndpoint + "departments/";
 export class TestDep extends Component {
   state = {
     items: [],
