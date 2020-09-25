@@ -47,13 +47,23 @@ export class TestDep extends Component {
             </li>
           ))}
         </ul>
-        <TestForm></TestForm>
-
-        <Modal buttonName="deleteform" modalId="delModal">
-          <DeleteForm></DeleteForm>
-        </Modal>
-
-        <UpdateForm></UpdateForm>
+        <div className="row">
+          <div className="col-4">
+            <Modal buttonName="New" header="Create Form" modalId="newModal">
+              <TestForm></TestForm>
+            </Modal>
+          </div>
+          <div className="col-4">
+            <Modal buttonName="Delete" header="Delete Form" modalId="delModal">
+              <DeleteForm></DeleteForm>
+            </Modal>
+          </div>
+          <div className="col-4">
+            <Modal buttonName="Update" header="Update Form" modalId="upModal">
+              <UpdateForm></UpdateForm>
+            </Modal>
+          </div>
+        </div>
       </div>
     );
   }
