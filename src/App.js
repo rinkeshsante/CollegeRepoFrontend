@@ -6,7 +6,7 @@ import Sidebar from "./components/sidebar";
 
 function App() {
   return (
-    <div className="container">
+    <div className="container-fluid">
       <Navbar></Navbar>
       <div className="row">
         <Sidebar></Sidebar>
