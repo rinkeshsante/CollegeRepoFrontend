@@ -33,7 +33,7 @@ export class Table extends Component {
   render() {
     if (!this.state.isLoaded) return <h2>loading....</h2>;
 
-    const { table_name, cloumn_name } = this.props;
+    const { table_name, column_name } = this.props;
     const filename = this.getFileName(table_name);
 
     return (
@@ -51,7 +51,7 @@ export class Table extends Component {
         <table class="table  table-bordered">
           <thead class="thead-light">
             <tr>
-              {cloumn_name.map((name) => (
+              {column_name.map((name) => (
                 <th>{name}</th>
               ))}
             </tr>
@@ -59,7 +59,7 @@ export class Table extends Component {
           <tbody>
             {this.state.items.map((detail) => (
               <tr>
-                {cloumn_name.map((name) => (
+                {column_name.map((name) => (
                   <td>{detail[name]}</td>
                 ))}
               </tr>
