@@ -10,8 +10,8 @@ export class DetailView extends Component {
         {Object.entries(data).map(([key, value]) => {
           return (
             <div className="row">
-              <div className="col-2">{key}</div>
-              <div className="col-2">: {value.toString()}</div>
+              <div className="col">{key}</div>
+              <div className="col">: {value.toString()}</div>
             </div>
           );
         })}
