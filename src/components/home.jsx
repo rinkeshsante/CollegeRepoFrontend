@@ -1,17 +1,24 @@
 import React, { Component } from "react";
 import Modal from "./common/modal";
+import Table from "./common/table";
 import TestDep from "./testDep";
+import { ApiEndpoint } from "../config.json";
+import DetailView from "./common/detailView";
 
 export class Home extends Component {
   render() {
     return (
       <div>
         <h1>Home</h1>
-        <Modal buttonName="about" modalId="small" header="head">
-          <h1> i am children</h1>
-        </Modal>
-        <h2>testing page</h2>
-        <TestDep></TestDep>
+        <Table
+          BASE_URL={ApiEndpoint + "departments/"}
+          table_name="Department"
+          cloumn_name={["id", "name"]}
+        ></Table>
+        <DetailView
+          header="hse"
+          data={{ name: "on", age: 90, point: 90.89 }}
+        ></DetailView>
       </div>
     );
   }
