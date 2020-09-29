@@ -5,7 +5,7 @@ export class Sidebar extends Component {
   render() {
     return (
       <div className="col-md-3 order-md-1 mb-4">
-        <div class="list-group" id="list-tab" role="tablist">
+        <div className="list-group" id="list-tab" role="tablist">
           <NavLink
             className="list-group-item list-group-item-action "
             to="/home"

@@ -48,8 +48,8 @@ export class Table extends Component {
             DownLoad csv
           </CsvDownload>
         </h2>
-        <table class="table  table-bordered">
-          <thead class="thead-light">
+        <table className="table  table-bordered">
+          <thead className="thead-light">
             <tr>
               {column_name.map((name) => (
                 <th>{name}</th>
