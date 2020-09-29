@@ -2,9 +2,11 @@ import React, { Component } from "react";
 
 export class Modal extends Component {
   render() {
-    const { header, buttonName, children, modalId } = this.props;
+    const { header = "", buttonName = "more", children, modalId } = this.props;
 
-    const modalRef = "#" + modalId;
+    const new_modalId = "m" + modalId.toString();
+
+    const modalRef = "#" + new_modalId;
 
     return (
       <div>
@@ -19,7 +21,7 @@ export class Modal extends Component {
 
         <div
           class="modal fade"
-          id={modalId}
+          id={new_modalId}
           tabindex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
