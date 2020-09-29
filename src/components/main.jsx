@@ -1,52 +1,23 @@
 import React, { Component } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
+import ExportCSV from "./exportCsv";
+import Home from "./home";
+import NotFound from "./notFound";
+import DepartmentTable from "./tables/departmentTable";
 
 export class Main extends Component {
   render() {
     return (
       <div className="col-md-8 order-md-2 ">
-        <h1>main content</h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-          nisi inventore laudantium perferendis voluptate iste est pariatur in,
-          iure, sequi, adipisci saepe obcaecati ipsam nemo facere illo rerum non
-          quo?
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-          nisi inventore laudantium perferendis voluptate iste est pariatur in,
-          iure, sequi, adipisci saepe obcaecati ipsam nemo facere illo rerum non
-          quo?
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-          nisi inventore laudantium perferendis voluptate iste est pariatur in,
-          iure, sequi, adipisci saepe obcaecati ipsam nemo facere illo rerum non
-          quo?
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-          nisi inventore laudantium perferendis voluptate iste est pariatur in,
-          iure, sequi, adipisci saepe obcaecati ipsam nemo facere illo rerum non
-          quo?
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-          nisi inventore laudantium perferendis voluptate iste est pariatur in,
-          iure, sequi, adipisci saepe obcaecati ipsam nemo facere illo rerum non
-          quo?
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-          nisi inventore laudantium perferendis voluptate iste est pariatur in,
-          iure, sequi, adipisci saepe obcaecati ipsam nemo facere illo rerum non
-          quo?
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident
-          nisi inventore laudantium perferendis voluptate iste est pariatur in,
-          iure, sequi, adipisci saepe obcaecati ipsam nemo facere illo rerum non
-          quo?
-        </p>
+        <Switch>
+          <Route path="/departments" component={DepartmentTable}></Route>
+          <Route path="/home" component={Home}></Route>
+          <Route path="/reports" component={ExportCSV}></Route>
+          <Route path="/not-found" component={NotFound}></Route>
+
+          <Redirect path="/" exact to="/home"></Redirect>
+          <Redirect to="/not-found"></Redirect>
+        </Switch>
       </div>
     );
   }

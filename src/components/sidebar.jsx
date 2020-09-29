@@ -1,21 +1,54 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 export class Sidebar extends Component {
   render() {
     return (
       <div className="col-md-3 order-md-1 mb-4">
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-        </ul>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex maiores
-          soluta, rerum ipsam quasi cumque voluptate molestias possimus harum
-          perspiciatis nam similique vel sed quam mollitia dolorum. Quia, omnis
-          provident.
-        </p>
+        <div class="list-group" id="list-tab" role="tablist">
+          <NavLink
+            className="list-group-item list-group-item-action "
+            to="/home"
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/reports"
+          >
+            Reports
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/departments"
+          >
+            Departments
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/labs"
+          >
+            Labs
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/computers"
+          >
+            Computers
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/equipments"
+          >
+            Equipments
+          </NavLink>
+          <NavLink
+            className="list-group-item list-group-item-action"
+            to="/software"
+          >
+            Software
+          </NavLink>
+        </div>
       </div>
     );
   }
