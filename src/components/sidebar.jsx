@@ -14,9 +14,9 @@ export class Sidebar extends Component {
           </NavLink>
           <NavLink
             className="list-group-item list-group-item-action"
-            to="/reports"
+            to="/perchases"
           >
-            Reports
+            Purchase
           </NavLink>
           <NavLink
             className="list-group-item list-group-item-action"
@@ -44,7 +44,7 @@ export class Sidebar extends Component {
           </NavLink>
           <NavLink
             className="list-group-item list-group-item-action"
-            to="/software"
+            to="/softwares"
           >
             Software
           </NavLink>
