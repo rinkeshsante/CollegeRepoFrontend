@@ -8,14 +8,7 @@ export class Table extends Component {
     isLoaded: false,
   };
 
-  componentDidMount() {
-    this.getData();
-    setInterval(this.getData, 5000);
-
-    // refresh every 5 sec
-  }
-
-  getData = async () => {
+  async componentDidMount() {
     try {
       const { data } = await axios.get(this.props.BASE_URL);
       this.setState({
@@ -26,8 +19,35 @@ export class Table extends Component {
       if (ex.respose && ex.respose.status === 400) alert("data don't exist");
       else alert("unexpected error");
     }
+  }
 
-    console.log("data refreshed");
+  handleUpdate = async (data) => {
+    axios.patch(this.props.BASE_URL + data.id + "/", data).catch((err) => {
+      console.log(err);
+      alert("data don't exist!");
+    });
+
+    const items = [...this.state.items];
+    const index = items.indexOf(data);
+    items[index] = { ...data };
+    this.setState({ items });
+  };
+
+  handleDelete = async (data) => {
+    axios.delete(this.props.BASE_URL + this.state.id + "/").catch((err) => {
+      alert("data don't exist!");
+      console.log(err);
+    });
+
+    const items = this.state.items.filter((p) => p.id !== data.id);
+    this.setState({ items });
+  };
+
+  handleAdd = async (data) => {
+    const { data: post } = await axios.post(this.props.BASE_URL, data);
+
+    const items = [...this.state.items, post];
+    this.setState({ items });
   };
 
   render() {
