@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import ExportCSV from "./exportCsv";
 import Home from "./home";
-import LoginForm from "./LoginForm";
-import RegisterForm from "./RegisterForm";
+import LoginForm from "./forms/LoginForm";
+import RegisterForm from "./forms/RegisterForm";
 import NotFound from "./notFound";
 import ComputerTable from "./tables/computerTable";
 import DepartmentTable from "./tables/departmentTable";
@@ -15,7 +15,7 @@ import SoftwareTable from "./tables/softwareTable";
 export class Main extends Component {
   render() {
     return (
-      <div className="col-md-8 order-md-2 ">
+      <div className="col-md-9 order-md-2 ">
         <Switch>
           <Route path="/register" component={RegisterForm}></Route>
           <Route path="/login" component={LoginForm}></Route>
