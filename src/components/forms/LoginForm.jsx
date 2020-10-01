@@ -9,7 +9,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -18,7 +18,7 @@ class LoginForm extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <input id="password" type="text" className="form-control" />
+            <input id="password" type="password" className="form-control" />
           </div>
           <button className="btn btn-primary">Login</button>
         </form>
