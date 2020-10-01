@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
 import CsvDownload from "react-json-to-csv";
-
+import http from "../../services/httpService";
+import logger from "../../services/logService";
+import createCSV from "../../services/createCSV";
+import MyModal from "./myModal";
+import DetailView from "./detailView";
+import DeleteEntry from "./deleteEntry";
 export class Table extends Component {
   state = {
     items: [],
@@ -9,21 +13,16 @@ export class Table extends Component {
   };
 
   async componentDidMount() {
-    try {
-      const { data } = await axios.get(this.props.BASE_URL);
-      this.setState({
-        isLoaded: true,
-        items: data,
-      });
-    } catch (ex) {
-      if (ex.respose && ex.respose.status === 400) alert("data don't exist");
-      else alert("unexpected error");
-    }
+    const { data } = await http.get(this.props.BASE_URL);
+    this.setState({
+      isLoaded: true,
+      items: data,
+    });
   }
 
   handleUpdate = async (data) => {
-    axios.patch(this.props.BASE_URL + data.id + "/", data).catch((err) => {
-      console.log(err);
+    http.patch(this.props.BASE_URL + data.id + "/", data).catch((err) => {
+      logger.log(err);
       alert("data don't exist!");
     });
 
@@ -34,17 +33,23 @@ export class Table extends Component {
   };
 
   handleDelete = async (data) => {
-    axios.delete(this.props.BASE_URL + this.state.id + "/").catch((err) => {
-      alert("data don't exist!");
-      console.log(err);
-    });
+    // saving original state in chase of failure
+    const original = this.state.items;
 
     const items = this.state.items.filter((p) => p.id !== data.id);
     this.setState({ items });
+
+    try {
+      await http.delete(this.props.BASE_URL + data.id + "/");
+    } catch (er) {
+      if (er.respose && er.respose.status === 400)
+        alert("item dosen't exist in server");
+      this.setState({ items: original });
+    }
   };
 
   handleAdd = async (data) => {
-    const { data: post } = await axios.post(this.props.BASE_URL, data);
+    const { data: post } = await http.post(this.props.BASE_URL, data);
 
     const items = [...this.state.items, post];
     this.setState({ items });
@@ -54,26 +59,46 @@ export class Table extends Component {
     if (!this.state.isLoaded) return <h2>loading....</h2>;
 
     const { table_name, column_name } = this.props;
-    const filename = this.getFileName(table_name);
+    // const filename = this.getFileName(table_name);
 
     return (
       <div>
-        <h2>
-          {table_name} list
-          <CsvDownload
-            data={this.state.items}
-            filename={filename}
-            className="btn badge-info"
-          >
-            DownLoad csv
-          </CsvDownload>
-        </h2>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+          <div class="navbar-brand">{table_name} Table</div>
+
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <button className="nav-link btn btn-link">New</button>
+            </li>
+            <li class="nav-item">
+              <CsvDownload
+                data={this.state.items}
+                filename={createCSV.getFileName(table_name)}
+                className="nav-link btn btn-link"
+              >
+                Download csv
+              </CsvDownload>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+            />
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+              Search
+            </button>
+          </form>
+        </nav>
+
         <table className="table  table-bordered">
           <thead className="thead-light">
             <tr>
               {column_name.map((name) => (
                 <th>{name}</th>
               ))}
+              <th>more</th>
             </tr>
           </thead>
           <tbody>
@@ -82,32 +107,20 @@ export class Table extends Component {
                 {column_name.map((name) => (
                   <td>{detail[name]}</td>
                 ))}
+                <td>
+                  <MyModal header={detail.name}>
+                    <DetailView data={detail}>
+                      <button onClick={() => this.handleDelete(detail)}>
+                        delete
+                      </button>
+                    </DetailView>
+                  </MyModal>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    );
-  }
-
-  getFileName(table_name) {
-    var today = new Date();
-    var date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
-
-    return (
-      table_name +
-      " " +
-      date +
-      " at " +
-      today.getHours() +
-      ":" +
-      today.getMinutes() +
-      ".csv"
     );
   }
 }
