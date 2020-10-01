@@ -6,7 +6,7 @@ export class PurchaseTable extends Component {
   render() {
     return (
       <Table
-        BASE_URL={ApiEndpoint + "perchases/"}
+        BASE_URL={ApiEndpoint + "purchases/"}
         table_name="Purchase"
         column_name={["id", "bill_no", "supplier", "rate"]}
       />
