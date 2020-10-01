@@ -19,7 +19,14 @@ export class MyModal extends Component {
           {buttonName}
         </Button>
 
-        <Modal show={show} onHide={handleClose} animation={false}>
+        <Modal
+          size="lg"
+          show={show}
+          onHide={handleClose}
+          animation={false}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
           <Modal.Header closeButton>
             <Modal.Title>{header}</Modal.Title>
           </Modal.Header>
